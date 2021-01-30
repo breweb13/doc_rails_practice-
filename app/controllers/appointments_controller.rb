@@ -14,6 +14,13 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+
+    if @appointment.save
+      redirect_to @appointment
+    else
+      render :new
+    end
+  
   end
 
   def edit
@@ -25,7 +32,8 @@ class AppointmentsController < ApplicationController
     if @appointment.update(appointment_params)
       redirect_to @appointment
     else
-      render : edit
+      render :edit
+    end
   end
 
   def destroy
